@@ -1,9 +1,13 @@
-import { Bell, History, Plus, Search, Settings, Users } from "lucide-react";
+import { Bell, ChevronDown, LayoutGrid, History, Plus, Search, Settings, Users } from "lucide-react";
 import SearchInput from "./SearchInput";
+
+// PR
+import Image from "next/image";
 
 function Header() {
   return (
-    <div className="bg-gray-100 h-12 flex items-center justify-between px-8">
+    // PR classname
+    <div className="bg-gray-100 h-12 flex items-center justify-between px-8 border-b border-slate-200">
       <div className="flex gap-3">
         {/* Recent Activities */}
         <button>
@@ -12,7 +16,8 @@ function Header() {
         {/* Search */}
         <SearchInput />
       </div>
-      <div className="flex">
+      {/* PR classname */}
+      <div className="flex items-center gap-3">
         {/* Plus */}
         <div className="pr-2 border-r border-gray-300">
           <button className="p-1 rounded-lg bg-blue-600">
@@ -31,6 +36,26 @@ function Header() {
           </button>
         </div>
         {/*  */}
+        {/* PR */}
+        <div className="flex gap-3">
+          <button className="flex items-center">
+            <span>Walmart</span>
+            <ChevronDown className="w-4 h-4" />
+          </button>
+          <button>
+            <Image
+              src="/user.jpg"
+              alt="user image"
+              width={96}
+              height={96}
+              className="rounded-full w-8 h-8 border border-slate-800"
+            />
+          </button>
+          <button>
+            <LayoutGrid className="w-6 h-6 text-slate-900" />
+          </button>
+        </div>
+        {/* PR */}
         {/*  */}
       </div>
     </div>

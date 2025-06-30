@@ -1,5 +1,12 @@
+import HomeNavbar from "@/components/dashboard/HomeNavbar";
+
 function Layout({ children }) {
-  return <div className="bg-orange-400">{children}</div>;
+  return (
+    <div className="">
+      <HomeNavbar />
+      {children}
+    </div>
+  );
 }
 
 export default Layout;

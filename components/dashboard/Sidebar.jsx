@@ -1,3 +1,4 @@
+"use client";
 import {
   BaggageClaim,
   BarChart4,
@@ -5,6 +6,7 @@ import {
   ChevronLeft,
   Files,
   Home,
+  PlusCircle,
   ShoppingBag,
   ShoppingBasket,
   Store,
@@ -12,14 +14,71 @@ import {
 import Link from "next/link";
 import SubscriptionCard from "./SubscriptionCard";
 
+import CollapsibleLink from "./CollapsibleLink";
+import SidebarDropdownLink from "./SidebarDropdownLink";
+
 function Sidebar() {
+  const inventoryLinks = [
+    {
+      title: "Items",
+      href: "/dashboard/inventory",
+    },
+    {
+      title: "Item Groups",
+      href: "/dashboard/inventory",
+    },
+    {
+      title: "Inventory Adjustments",
+      href: "",
+    },
+  ];
+
+  const salesLinks = [
+    {
+      title: "Customers",
+      href: "#",
+    },
+    {
+      title: "Sales Orders",
+      href: "#",
+    },
+    {
+      title: "Packages",
+      href: "#",
+    },
+    {
+      title: "Shipments",
+      href: "#",
+    },
+    {
+      title: "Invoices",
+      href: "#",
+    },
+    {
+      title: "Sales Receipts",
+      href: "#",
+    },
+    {
+      title: "Payment Received",
+      href: "#",
+    },
+    {
+      title: "Sales Returns",
+      href: "#",
+    },
+    {
+      title: "Credit Notes",
+      href: "#",
+    },
+  ];
+  
   return (
     <div className="w-60 min-h-screen bg-slate-800 text-slate-50 fixed flex flex-col justify-between">
       {/* TOP */}
 
       <div className="flex flex-col">
         {/* Logo */}
-        {/* PR link */}
+        
         <Link
           href="#"
           className="bg-slate-950 flex space-x-2 items-center py-3 px-2"
@@ -28,9 +87,9 @@ function Sidebar() {
           <span className="font-semibold text-xl">Inventory</span>
         </Link>
         {/* Links */}
-        {/* PR classname */}
+        
         <nav className="flex flex-col gap-3 px-3 py-6">
-          {/* PR href and classname */}
+          
           <Link
             className="flex items-center space-x-2 bg-blue-600 text-slate-50 p-2 rounded-md"
             href="#"
@@ -38,19 +97,20 @@ function Sidebar() {
             <Home className="w-4 h-4" />
             <span>Home</span>
           </Link>
-          {/* PR button and classname */}
+          <SidebarDropdownLink
+            title="Inventory"
+            items={inventoryLinks}
+            icon={BaggageClaim}
+          />
+
+          <SidebarDropdownLink
+            title="Sales"
+            items={salesLinks}
+            icon={ShoppingBasket}
+          />
+
           <button className="cursor-pointer flex items-center space-x-2 p-2">
-            {/* PR */}
-            <BaggageClaim className="w-4 h-4" />
-            <span>Inventory</span>
-          </button>
-          {/* PR new addition */}
-          <button className="cursor-pointer flex items-center space-x-2 p-2">
-            <ShoppingBasket className="w-4 h-4" />
-            <span>Sales</span>
-          </button>
-          <button className="cursor-pointer flex items-center space-x-2 p-2">
-            {/* PR */}
+            
             <ShoppingBag className="w-4 h-4" />
             <span>Purchases</span>
           </button>
@@ -66,13 +126,13 @@ function Sidebar() {
             <Files className="w-4 h-4" />
             <span>Documents</span>
           </Link>
-          {/* PR END */}
+          
         </nav>
         <SubscriptionCard />
       </div>
 
       {/* Bottom */}
-      {/* PR classname */}
+      
       <div className="flex flex-col">
         <button className="cursor-pointer bg-slate-950 flex space-x-2 items-center justify-center py-3 px-2">
           <ChevronLeft />

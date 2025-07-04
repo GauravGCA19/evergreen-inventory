@@ -30,6 +30,13 @@ function NewItem() {
     { label: "Warehouse B", value: "zfdhay5w4u5e43" },
     { label: "Warehouse C", value: "ukyjt3453t2ew" },
   ];
+
+  const suppliers = [
+    { label: "Supplier A", value: "jrthert4y5443y" },
+    { label: "Supplier B", value: "ukdyrjuts643" },
+    { label: "Supplier C", value: "2463y5u4ehheqr" },
+  ];
+  
   const {
     register,
     handleSubmit,
@@ -142,6 +149,14 @@ function NewItem() {
             errors={errors}
             type="number"
             className="w-full"
+          />
+
+          <SelectInput
+            name="supplierId"
+            label="Select the Item Supplier"
+            register={register}
+            className="w-full"
+            options={suppliers}
           />
 
           <TextInput

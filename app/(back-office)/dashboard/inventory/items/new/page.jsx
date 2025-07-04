@@ -8,8 +8,11 @@ import { useState } from "react";
 import SubmitButton from "@/components/formInputs/SubmitButton";
 import TextAreaInput from "@/components/formInputs/TextAreaInput";
 import SelectInput from "@/components/formInputs/SelectInput";
+import { UploadButton } from "@/lib/uploadthing";
+import { UploadDropzone } from "@uploadthing/react";
 
 function NewItem() {
+  const [imageUrl, setImageUrl] = useState("");
   const categories = [
     { label: "Electronics", value: "asdwfe524643t35tgrf" },
     { label: "Clothes", value: "rwgrr4363y534tg" },
@@ -36,7 +39,7 @@ function NewItem() {
     { label: "Supplier B", value: "ukdyrjuts643" },
     { label: "Supplier C", value: "2463y5u4ehheqr" },
   ];
-  
+
   const {
     register,
     handleSubmit,
@@ -45,6 +48,7 @@ function NewItem() {
   } = useForm();
   const [loading, setLoading] = useState(false);
   async function onSubmit(data) {
+    data.imageUrl = imageUrl;
     console.log(data);
     setLoading(true);
     const baseUrl = "http://localhost:3000";
@@ -217,6 +221,37 @@ function NewItem() {
             register={register}
             errors={errors}
           />
+
+          {/* Image upload */}
+          <div className="sm:col-span-2 flex flex-col items-center justify-center">
+            <p className="block text-sm font-medium leading-6 text-gray-900 mb-2">
+              Upload Image
+            </p>
+            <UploadButton
+              className="w-36 h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200"
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                // Do something with the response
+                setImageUrl(res[0].ufsUrl);
+                console.log(res[0].ufsUrl);
+                alert("Upload Completed");
+              }}
+              onUploadError={(error) => {
+                // Do something with the error.
+                alert(`ERROR! ${error.message}`);
+              }}
+            />
+
+            {imageUrl && (
+              <div className="sm:col-span-2 flex justify-center mt-4">
+                <img
+                  src={imageUrl}
+                  alt="Uploaded Preview"
+                  className="max-h-24 rounded border border-gray-300 shadow"
+                />
+              </div>
+            )}
+          </div>
         </div>
         <SubmitButton isLoading={loading} title="Item" />
       </form>
